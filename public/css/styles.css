@@ -1,0 +1,85 @@
+@import url('http://getbootstrap.com/dist/css/bootstrap.css');
+
+body {
+	background-image: url(http://i.imgur.com/YA7A5Ma.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+  	font-family: Helvetica, Arial, sans-serif;
+  	background-color: rgba(255,0,200,1); /* Sanity Check! */
+}
+
+.eventImage {
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.thumbnail {
+	max-height: 150px;
+	max-width: 250px;
+}
+
+.infoParagraph {
+	max-width: 250px;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color:rgba(255,0,200,1);
+  height: 1px;
+}
+
+#logo {
+    position: absolute;
+    top: 5px;
+}
+
+#eventsContainer {
+	background-image: url(http://i.imgur.com/Xz8s9vb.png);
+}
+
+#discussionContainer {
+	background-image: url(http://i.imgur.com/Xz8s9vb.png);
+}
+
+.affix {
+    position: fixed;
+}
+
+.column {
+  width: 99%;
+  padding: 1%;
+}
+
+  #map_canvas {
+    width: 100%;
+    height: 400px;
+    background-color: #CCC;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #myModal {
+  	background-image: url(http://i.imgur.com/Xz8s9vb.png);
+  }
+
+h1 {
+	color: gray;
+	margin-top: 100px;
+	text-align: center;
+}
+
+.sidebar-outer {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
