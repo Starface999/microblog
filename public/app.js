@@ -1,7 +1,7 @@
 console.log("Sanity Check: JS is working!");
 
 $(document).ready(function(){
-
+	
 
 	$("#postEventForm").submit(function(e){
 		e.preventDefault();
@@ -9,9 +9,9 @@ $(document).ready(function(){
 		var evnt = $(this).serialize();
 		$('#nameOfEvent').empty();
 
-		$.post('/events', evnt, function(){
+		$.post('/events', evnt, function(data){
 			console.log(data);
-			$('#eventPosts').append('<li>' + data.body + '</li>');
+			$('#eventPosts').append('<li>' + data + '</li>');
 			$('#postEventForm')[0].reset();
 		});
 	

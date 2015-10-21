@@ -12,12 +12,13 @@ var bodyParser = require("body-parser");
 app.set('view engine', 'ejs');
 // serve js & css files
 app.use("/static", express.static("public"));
-mongoose.connect('mongodb://localhost/microblog');
+
 // body parser config to accept our datatypes
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var db = require('./models/event.js');
+var db = require('./models/index.js');
+// your database
 
 process.on('uncaughtException', function (err) {
     console.log(err);
@@ -27,24 +28,37 @@ process.on('uncaughtException', function (err) {
 
 
 app.get('/', function (req, res) {
-	db.Event.find({}, function (err, events) {
-		if (err) { return console.log("find error: " + err); }
-		res.render('index', {events: events});
+	db.Event.find( // search for events
+		{}, // not specifying any properties to look for, so it returns all that it finds
+		function (err, eventsFromDB) { 
+		// the first result of the Find function will be an error if there is an error
+		if (err) { 
+			return console.log("find error: " + err); 
+		// if there is no error, the Find function will return the Event documents / JSON objects from the DB
+		} else {
+			// render the index.ejs page, using the events data to populate it dynamically
+			res.render('index', {events: eventsFromDB});
+		}
 	});
 });
 
 //show:
 app.get('/events/:id', function (req, res) {
 	// var evnt = events[req.params.id];
-	db.Event.find({_id: req.params.id}, function (err, events) {
-	  res.render('event-show', { evnt: events });	
+	console.log(req.params); // { _id: 1 }
+	db.Event.find({_id: req.params.id}, function (err, searchedEvent) {
+	  res.render('event-show', { events: searchedEvent });
 	});
 });
 //create:
 app.post('/events', function (req, res){
-	var evnt = req.body.name;
-	Event.create(evnt, function (err, events) {
-		res.status(200).json(events);
+	// var eventData = req.body;
+	var newEvent = new db.Event(req.body);
+	// db.Event.create
+	newEvent.save(
+		// eventData, 
+		function (err, createdEvent) {
+		res.status(200).json(createdEvent);
 	});
 });
 
