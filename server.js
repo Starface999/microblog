@@ -52,6 +52,7 @@ app.get('/events/:id', function (req, res) {
 });
 //create:
 app.post('/events', function (req, res){
+	console.log(req.body);
 	// var eventData = req.body;
 	var newEvent = new db.Event(req.body);
 	// db.Event.create

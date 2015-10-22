@@ -1,12 +1,13 @@
 console.log("Sanity Check: JS is working!");
 
 $(document).ready(function(){
-	
+
 
 	$("#postEventForm").submit(function(e){
 		e.preventDefault();
 		$('#myModal').modal('hide');
 		var evnt = $(this).serialize();
+		console.log("form data is: ", evnt);
 		$('#nameOfEvent').empty();
 
 		$.post('/events', evnt, function(data){

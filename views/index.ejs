@@ -52,11 +52,11 @@
                     </div>
                     <label for="date">Date (mm/dd/yyyy format)</label>
                     <div>
-                      <input type="text" class="form-control" id="date">
+                      <input type="text" name="date" class="form-control" id="date">
                     </div>
                     <label for="time">Time (indicate am or pm)</label>
                     <div>
-                      <input type="text" class="form-control" id="time">
+                      <input type="text" name="time" class="form-control" id="time">
                     </div>
                     <div>
                       <label for="coordinates">Location Coordinates</label>
@@ -71,12 +71,12 @@
                   <div>Description</label>
                   </div>
                   <div>
-                    <textarea class="form-control" name="Text1" cols="40" rows="4" id="description" ></textarea>
+                    <textarea class="form-control" name="descriptionOfEvent" cols="40" rows="4" id="description" ></textarea>
                   </div>
                   <div>Image</label>
                   </div>
                   <div>
-                    <input type="text" name="longitude" id="image" placeholder="imgur or other direct image link">
+                    <input type="text" name="imageUrl" id="image" placeholder="imgur or other direct image link">
                   </div>
                   <button type="submit" class="btn btn-default pull-right">Post Event</button>
                 </form>
@@ -90,6 +90,7 @@
               <!-- list of foods -->
                  <ul class="list-group" id="eventPosts">
                  <% for (var i=0; i<events.length; i++) { %>
+                 <%= events %>
                    <li class="list-group-item">
                      <h4 class="list-group-item-heading"><%= events[i].nameOfEvent %></h4>
                      <span class='list-group-item-text'><%= events[i].date %></span>
@@ -97,7 +98,7 @@
                      <span class='list-group-item-text'><%= events[i].descriptionOfEvent %></span>
                      <span class='list-group-item-text'><%= events[i].image %></span>
                      <span class='list-group-item-text'><%= events[i].coordinates %></span>
-                       <button data-id="<%=foods[i].id %>" type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                       <button data-id="<%=events[i].id %>" type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
                    </li>
                  <% } %>
                  </ul>
